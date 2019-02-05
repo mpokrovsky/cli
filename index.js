@@ -2,6 +2,11 @@ const { getAllFilePathsWithExtension, readFile } = require('./fileSystem');
 const { readLine } = require('./console');
 const { getComments, getFileNames, processComments } = require('./processData');
 const { show } = require('./show');
+const { important } = require('./important');
+const { date } = require('./date');
+const { user } = require('./user');
+const { sort } = require('./sort');
+
 
 app();
 
@@ -10,7 +15,7 @@ function app() {
     const arrayOfComments = getComments(files);
     const fileNames = getFileNames(); 
     const commentsData = processComments(fileNames, arrayOfComments);
-    show(commentsData);
+    show(date(commentsData, 'fd'));
     //console.log('Please, write your command!');
     //readLine(processCommand, commentsData);
 }
@@ -30,8 +35,6 @@ function processCommand(command, data) {
         case 'sort':
             break;
         case 'show':
-            console.log(typeof(data));
-            //show(data);
             break;
         case 'date':
             break;

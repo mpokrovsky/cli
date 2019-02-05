@@ -1,12 +1,10 @@
-function sort(flag) {
-    switch (flag) {
+function sort(arg) {
+    switch (arg) {
         case 'importance':
             break;
         case 'user':
             break;
         case 'date':
-            break;
-        default:
             break;
     }
 }
