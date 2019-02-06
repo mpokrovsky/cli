@@ -2,7 +2,7 @@ const { getAllFilePathsWithExtension } = require('./fileSystem');
 
 function getImportance(commentString) {
     const res = String(commentString).split("").reverse().reduce((acc,val) => val === '!' ? acc += 1 : acc, 0);
-    return res === 0 ? ' ' : '!';
+    return [res === 0 ? ' ' : '!', res];
 } 
 
 function getUserName(commentString) {
@@ -20,12 +20,13 @@ function getDate(commentString) {
 function getText(commentString) { 
     const date = /(?<=; )[\d-]*(?=;)/gi;
     const regExp1 = /(?<=; [\d-]*; ).*/gi;
-    const regExp2 = /(?<=\/\/ todo ).*/gi;
-    if (date.test(commentString)) {
+    const regExp2 = /(?<=\/\/ *todo *\: *).*/gi;
+    if (date.test(commentString)) { // есть спец разметка
       return `${String(commentString).match(regExp1)}`;
     }
+    console.log(`${String(commentString).match(regExp2)}`);
     return `${String(commentString).match(regExp2)}`;
-  }
+}
 
 function getComments(files) {
     const regExp = /\/\/ todo .+\n/gi;
@@ -42,7 +43,7 @@ function processComments(fileNames, arrayOfComments) {
     for (let i in arrayOfComments) {
         for (let j in arrayOfComments[i]) {
             const commentObj = new Object();
-            commentObj.importance = getImportance(arrayOfComments[i][j]);
+            [commentObj.importance, commentObj.importanceAmount] = getImportance(arrayOfComments[i][j]);
             commentObj.user = getUserName(arrayOfComments[i][j]);
             commentObj.date = getDate(arrayOfComments[i][j]);
             commentObj.comment = getText(arrayOfComments[i][j]);

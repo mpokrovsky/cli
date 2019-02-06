@@ -12,10 +12,8 @@ app();
 
 function app() {
     const files = getFiles();
-    const arrayOfComments = getComments(files);
-    const fileNames = getFileNames(); 
-    const commentsData = processComments(fileNames, arrayOfComments);
-    show(date(commentsData, 'fd'));
+    const commentsData = processComments(getFileNames(), getComments(files));
+    show(commentsData);
     //console.log('Please, write your command!');
     //readLine(processCommand, commentsData);
 }
@@ -46,4 +44,18 @@ function processCommand(command, data) {
     }
 }
 
-// TODO you can do it!
+
+
+// TODO:you can do it!2
+
+// TODO :you can do it!3
+
+// TODO: you can do it!4
+
+// TODO : you can do it!5
+
+//TODO : you can do it!1
+
+// TODO     : you can do it!6
+
+// TODO :    you can do it!7
