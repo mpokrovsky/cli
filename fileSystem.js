@@ -9,7 +9,7 @@ function getAllFilePathsWithExtension(directoryPath, extension, filePaths) {
         // TODO WinDev; ; Убедиться, что будет работать под Windows.
         const filePath = directoryPath + '/' + fileName;
         if (fs.statSync(filePath).isDirectory()) {
-            getAllFilePathsWithExtension(filePath, filePaths);
+            getAllFilePathsWithExtension(filePath, 'js', filePaths);
         } else if (filePath.endsWith(`.${extension}`)) {
             filePaths.push(filePath);
         }

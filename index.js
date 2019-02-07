@@ -13,9 +13,9 @@ app();
 function app() {
     const files = getFiles();
     const commentsData = processComments(getFileNames(), getComments(files));
-    show(commentsData);
-    //console.log('Please, write your command!');
-    //readLine(processCommand, commentsData);
+    //show(commentsData);
+    console.log('Please, write your command!');
+    readLine(processCommand());
 }
 
 function getFiles() {
@@ -23,20 +23,25 @@ function getFiles() {
     return filePaths.map(path => readFile(path));
 }
 
-function processCommand(command, data) {
+function processCommand(command, ) {
     switch (command) {
         case 'exit':
             process.exit(0);
             break;
         case 'user':
+            user1();
             break;
         case 'sort':
+            sort(data, argument);
             break;
         case 'show':
+            show(data);
             break;
         case 'date':
+            date(data, date);
             break;
         case 'important':
+            important(data);
             break;
         default:
             console.log('wrong command');
@@ -45,17 +50,16 @@ function processCommand(command, data) {
 }
 
 
+//TODO : you can do it!2 -
 
-// TODO:you can do it!2
+// TODO :you can do it!3 +
 
-// TODO :you can do it!3
+// TODO: you can do it!4 -
 
-// TODO: you can do it!4
+// TODO:you can do it!5 -
 
-// TODO : you can do it!5
+// TODO : you can do it!1 +
 
-//TODO : you can do it!1
+// TODO     : you can do it!6 +
 
-// TODO     : you can do it!6
-
-// TODO :    you can do it!7
+// TODO :    you can do it!7 +

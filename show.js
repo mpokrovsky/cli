@@ -12,28 +12,28 @@ function show(data){
             const showObj = new Object();
             showObj.importance = obj.importance;
 
-            showObj.user = formatobj(obj.user, 10);
+            showObj.user = formatStr(obj.user, 10);
             userMax = findMax('user', findMax(showObj.user, userMax));
 
-            showObj.date = formatobj(obj.date, 10);
+            showObj.date = formatStr(obj.date, 10);
             dateMax = findMax('date', findMax(showObj.date, dateMax));
             
-            showObj.comment = formatobj(obj.comment, 50);
+            showObj.comment = formatStr(obj.comment, 50);
             commentMax = findMax('comment', findMax(showObj.comment, commentMax));
             
-            showObj.fileName = formatobj(obj.fileName, 15);                     
+            showObj.fileName = formatStr(obj.fileName, 15);                     
             fileNameMax = findMax('fileName', findMax(showObj.fileName, fileNameMax));
 
             showData.push(showObj);
         }
     }
 
-    const userobjDiff = getDiff(userMax, 'user'.length);
-    const dateobjDiff = getDiff(dateMax, 'date'.length);
-    const commentobjDiff = getDiff(commentMax, 'comment'.length);
-    const fileNameobjDiff = getDiff(fileNameMax, 'fileName'.length);
+    const userStrDiff = getDiff(userMax, 'user'.length);
+    const dateStrDiff = getDiff(dateMax, 'date'.length);
+    const commentStrDiff = getDiff(commentMax, 'comment'.length);
+    const fileNameStrDiff = getDiff(fileNameMax, 'fileName'.length);
         
-    console.log(`  !  |  user${' '.repeat(userobjDiff)}  |  date${' '.repeat(dateobjDiff)}  |  comment${' '.repeat(commentobjDiff)}  |  fileName${' '.repeat(fileNameobjDiff)} 
+    console.log(`  !  |  user${' '.repeat(userStrDiff)}  |  date${' '.repeat(dateStrDiff)}  |  comment${' '.repeat(commentStrDiff)}  |  fileName${' '.repeat(fileNameStrDiff)} 
 ${'-'.repeat(5*5 + userMax + dateMax + commentMax + fileNameMax)}`);
         
     for (obj of showData) {
@@ -51,7 +51,7 @@ ${'-'.repeat(5*5 + userMax + dateMax + commentMax + fileNameMax)}`);
 
 function getDiff(num1, num2) { return Math.abs(num1 - num2) };
 
-function formatobj(value, limit) { return value.length > limit ? `${value.substr(0, limit - 3)}...` : value };
+function formatStr(value, limit) { return value.length > limit ? `${value.substr(0, limit - 3)}...` : value };
 
 function findMax(curValue, maxValue) { return curValue.length > maxValue ? curValue.length : maxValue };
 

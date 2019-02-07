@@ -20,11 +20,10 @@ function getDate(commentString) {
 function getText(commentString) { 
     const date = /(?<=; )[\d-]*(?=;)/gi;
     const regExp1 = /(?<=; [\d-]*; ).*/gi;
-    const regExp2 = /(?<=\/\/ *todo *\: *).*/gi;
+    const regExp2 = /(?<=\/\/ *?todo *?: *?).*/gi;
     if (date.test(commentString)) { // есть спец разметка
       return `${String(commentString).match(regExp1)}`;
     }
-    console.log(`${String(commentString).match(regExp2)}`);
     return `${String(commentString).match(regExp2)}`;
 }
 
