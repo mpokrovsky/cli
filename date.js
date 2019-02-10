@@ -1,4 +1,12 @@
-function date(data, dateGiven){
+const { getComments, getFileNames, processComments, getFiles } = require('./processData');
+const { output } = require('./output');
+
+function date(dateGiven){
+    if (dateGiven === undefined) {
+        console.log('Enter the date!');
+        return;
+    }
+    const data = processComments(getFileNames(), getComments(getFiles()));
     let dateList = [];
     const formatChangedDateGiven = new Date(dateGiven);
     for (let obj of data) {
@@ -7,7 +15,7 @@ function date(data, dateGiven){
             dateList.push(obj);
         }
     }
-    return dateList;
+    output(dateList);
 }
 
 module.exports = {

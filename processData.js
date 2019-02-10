@@ -1,4 +1,10 @@
 const { getAllFilePathsWithExtension } = require('./fileSystem');
+const { readFile } = require('./fileSystem');
+
+function getFiles() {
+    const filePaths = getAllFilePathsWithExtension(process.cwd(), 'js');
+    return filePaths.map(path => readFile(path));
+}
 
 function getImportance(commentString) {
     const res = String(commentString).split("").reverse().reduce((acc,val) => val === '!' ? acc += 1 : acc, 0);
@@ -20,7 +26,7 @@ function getDate(commentString) {
 function getText(commentString) { 
     const date = /(?<=; )[\d-]*(?=;)/gi;
     const regExp1 = /(?<=; [\d-]*; ).*/gi;
-    const regExp2 = /(?<=\/\/ *?todo *?: *?).*/gi;
+    const regExp2 = /(?<=\/\/ todo ).*/gi;
     if (date.test(commentString)) { // есть спец разметка
       return `${String(commentString).match(regExp1)}`;
     }
@@ -54,6 +60,7 @@ function processComments(fileNames, arrayOfComments) {
 }
 
 module.exports = {
+    getFiles,
     getComments,
     getFileNames,
     processComments

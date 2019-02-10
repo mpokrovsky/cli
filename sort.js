@@ -1,4 +1,12 @@
-function sort(data, arg) {
+const { getComments, getFileNames, processComments, getFiles } = require('./processData');
+const { output } = require('./output');
+
+function sort(arg) {
+    if (arg === undefined) {
+        console.log('Enter the parameter!');
+        return;
+    }
+    const data = processComments(getFileNames(), getComments(getFiles()));
     let sortList = [];
     switch (arg) {
         case 'importance':
@@ -10,8 +18,11 @@ function sort(data, arg) {
         case 'date':
             sortList = data.sort(sortByDate);
             break;
+        default:
+            console.log('No such parameter');
+            return;
     }
-    return sortList;
+    output(sortList);
 }
 
 function sortByImportance(value1, value2) { return value1.importanceAmount < value2.importanceAmount ? 1 : -1; }
