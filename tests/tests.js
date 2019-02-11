@@ -4,13 +4,14 @@ const child = require('child_process');
 
 const { expect } = chai;
 let proc;
-const exec = path.join(__dirname, '..', 'index.js');
+const exec = path.join('..', 'index.js');
 
 
 describe('Базовые проверки', () => {
     beforeEach(() => {
         proc = child.exec('node ' + exec);
     });
+
 
     it('должен писать приветственное сообщение', (done) => {
         proc.stdout.once('data', (output) => {

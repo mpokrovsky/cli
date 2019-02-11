@@ -4,7 +4,7 @@ const child = require('child_process');
 
 const { expect } = chai;
 let proc;
-const exec = path.join(__dirname, '../..', 'index.js');
+const exec = path.join('../..', 'index.js');
 
 
 describe('Команда sort', () => {
@@ -96,3 +96,9 @@ describe('Команда sort', () => {
         });
     });
 });
+
+
+
+
+
+

@@ -34,12 +34,12 @@ function getText(commentString) {
 }
 
 function getComments(files) {
-    const regExp = /\/\/ todo .+\n/gi;
+    const regExp = /\/\/ todo .+/gi;
     return files.map(file => file.match(regExp));
 }
 
 function getFileNames() {
-    const regExp = /\w+.js/gi;
+    const regExp = /(?<=\/)\w+\.js/gi;
     return getAllFilePathsWithExtension(process.cwd(), 'js').map(str => str.match(regExp));
 }
 

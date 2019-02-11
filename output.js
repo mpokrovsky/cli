@@ -34,15 +34,15 @@ function output(data) {
     const commentStrDiff = getDiff(commentMax, 'comment'.length);
     const fileNameStrDiff = getDiff(fileNameMax, 'fileName'.length);
         
-    result += `  !  |  user${' '.repeat(userStrDiff)}  |  date${' '.repeat(dateStrDiff)}  |  comment${' '.repeat(commentStrDiff)}  |  fileName${' '.repeat(fileNameStrDiff)} 
-${'-'.repeat(5*5 + userMax + dateMax + commentMax + fileNameMax)}\n`;
+    result += `  !  |  user${' '.repeat(userStrDiff)}  |  date${' '.repeat(dateStrDiff)}  |  comment${' '.repeat(commentStrDiff)}  |  fileName${' '.repeat(fileNameStrDiff)}  \n`;  
+    result += `${'-'.repeat(5*5 + userMax + dateMax + commentMax + fileNameMax)}\n`;
         
     for (obj of showData) {
         const userDiff = getDiff(userMax, obj.user.length);
         const dateDiff = getDiff(dateMax, obj.date.length);
         const commentDiff = getDiff(commentMax, obj.comment.length);
         const fileNameDiff = getDiff(fileNameMax, obj.fileName.length);
-        result += `  ${obj.importance}  |  ${obj.user}${' '.repeat(userDiff)}  |  ${obj.date}${' '.repeat(dateDiff)}  |  ${obj.comment}${' '.repeat(commentDiff)}  |  ${obj.fileName}${' '.repeat(fileNameDiff)} \n`;
+        result += `  ${obj.importance}  |  ${obj.user}${' '.repeat(userDiff)}  |  ${obj.date}${' '.repeat(dateDiff)}  |  ${obj.comment}${' '.repeat(commentDiff)}  |  ${obj.fileName}${' '.repeat(fileNameDiff)}  \n`;
     }
     
     if (data.length > 0) {

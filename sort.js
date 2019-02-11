@@ -7,16 +7,20 @@ function sort(arg) {
         return;
     }
     const data = processComments(getFileNames(), getComments(getFiles()));
-    let sortList = [];
+    let sortList = notEmptyElList = emptyElList = [];
     switch (arg) {
         case 'importance':
             sortList = data.sort(sortByImportance);
             break;
-        case 'user':
-            sortList = data.sort(sortByUser);
+        case 'user':            
+            notEmptyElList = data.filter(val => val.user !== '').sort(sortByUser);
+            emptyElList = data.filter(val => val.user === '');
+            sortList = [...notEmptyElList, ...emptyElList];
             break;
-        case 'date':
-            sortList = data.sort(sortByDate);
+        case 'date':            
+            notEmptyElList = data.filter(val => val.date !== '').sort(sortByDate);
+            emptyElList = data.filter(val => val.date === '');
+            sortList = [...notEmptyElList, ...emptyElList];
             break;
         default:
             console.log('No such parameter');
@@ -27,16 +31,9 @@ function sort(arg) {
 
 function sortByImportance(value1, value2) { return value1.importanceAmount < value2.importanceAmount ? 1 : -1; }
 
-function sortByUser(value1, value2) { 
-    if (value1.user === '') {
-        return 1;
-    }
-    if (value2.user === '') {
-        return -1;
-    }
-    return value1.user.toLowerCase() > value2.user.toLowerCase() ? 1 : -1; }
+function sortByUser(value1, value2) { return value1.user.toLowerCase() > value2.user.toLowerCase() ? 1 : -1; }
 
-function sortByDate(value1, value2) { return value1.date === '' ? 1 : new Date(value1.date) < new Date(value2.date) ? 1 : -1; }
+function sortByDate(value1, value2) { return new Date(value1.date) < new Date(value2.date) ? 1 : -1; }
 
 module.exports = {
     sort
