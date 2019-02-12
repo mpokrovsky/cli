@@ -12,29 +12,30 @@ function getImportance(commentString) {
 } 
 
 function getUserName(commentString) {
-    const regExp = /(?<=\/\/ todo )[\w ]*(?=;)/gi;
+    const regExp = /(?<=\/\/ *todo )[\w ]*(?=;.*;)/gi;
     const res = String(commentString).match(regExp);
     return res === null ? '' : `${res}`;
 }
 
 function getDate(commentString) {
-    const regExp = /(?<=; )[\d-]*(?=;)/gi;
+    const regExp = /(?<=;.*)\w.*(?=;)/gi;
     const res = String(commentString).match(regExp);
-    return res === null ? '' : `${res}`;
+    const notDate = /[^-\d]+/;
+    return res === null ? '' : notDate.test(res) ? 'invalid' : `${res}`;
 }
 
 function getText(commentString) { 
-    const date = /(?<=; )[\d-]*(?=;)/gi;
-    const regExp1 = /(?<=; [\d-]*; ).*/gi;
-    const regExp2 = /(?<=\/\/ todo ).*/gi;
-    if (date.test(commentString)) { // есть спец разметка
+    const date = /(?<=;).*(?=;)/gi;
+    const regExp1 = /(?<=; *.*;.*)[^ ].*/gi; // есть спец разметка
+    const regExp2 = /(?<=\/\/ *todo.*)[^ :].*/gi; // свободный формат 
+    if (date.test(commentString)) { 
       return `${String(commentString).match(regExp1)}`;
     }
     return `${String(commentString).match(regExp2)}`;
 }
 
 function getComments(files) {
-    const regExp = /\/\/ todo .+/gi;
+    const regExp = /\/\/ *todo *:* *.+/gi;
     return files.map(file => file.match(regExp));
 }
 

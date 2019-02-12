@@ -7,20 +7,20 @@ function sort(arg) {
         return;
     }
     const data = processComments(getFileNames(), getComments(getFiles()));
-    let sortList = notEmptyElList = emptyElList = [];
+    let sortList = validElList = invalidElList = [];
     switch (arg) {
         case 'importance':
             sortList = data.sort(sortByImportance);
             break;
         case 'user':            
-            notEmptyElList = data.filter(val => val.user !== '').sort(sortByUser);
-            emptyElList = data.filter(val => val.user === '');
-            sortList = [...notEmptyElList, ...emptyElList];
+            validElList = data.filter(val => val.user !== '').sort(sortByUser);
+            invalidElList = data.filter(val => val.user === '');
+            sortList = [...validElList, ...invalidElList];
             break;
         case 'date':            
-            notEmptyElList = data.filter(val => val.date !== '').sort(sortByDate);
-            emptyElList = data.filter(val => val.date === '');
-            sortList = [...notEmptyElList, ...emptyElList];
+            validElList = data.filter(val => val.date !== '' && val.date !== 'invalid').sort(sortByDate);
+            invalidElList = data.filter(val => val.date === '' || val.date === 'invalid');
+            sortList = [...validElList, ...invalidElList];
             break;
         default:
             console.log('No such parameter');
