@@ -16,7 +16,7 @@ function app() {
 function processCommand(input) {
     const command = input.split(' ')[0];
     const argument = input.split(' ')[1];
-    switch (command.split(' ')[0]) {
+    switch (command) {
         case 'exit':
             process.exit(0);
             break;

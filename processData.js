@@ -7,7 +7,7 @@ function getFiles() {
 }
 
 function getImportance(commentString) {
-    const res = String(commentString).split("").reverse().reduce((acc,val) => val === '!' ? acc += 1 : acc, 0);
+    const res = String(commentString).split("").reduce((acc,val) => val === '!' ? acc += 1 : acc, 0);
     return [res === 0 ? ' ' : '!', res];
 } 
 
