@@ -24,4 +24,4 @@
 Если введена команда не из этого списка, то в консоль должен выводиться текст "wrong command".
 В начале работы приложения, оно должна писать в консоль приглашение ввести команду: "Please, write your command!".
 
-[![asciicast](https://asciinema.org/a/228611)
+[![asciicast](https://asciinema.org/a/228611.png)](https://asciinema.org/a/228611)
