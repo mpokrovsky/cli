@@ -10,10 +10,7 @@ function date(dateGiven){
     const formatChangedDateGiven = new Date(dateGiven);
     const dateList = data.reduce((acc, el) => {
         const formatChangedDate = new Date(el.date);
-        if (formatChangedDate >= formatChangedDateGiven) {
-            acc.push(el);
-        }
-        return acc;
+        return formatChangedDate >= formatChangedDateGiven ? [...acc, el] : acc;
     }, []);
     output(dateList);
 }
