@@ -7,14 +7,14 @@ function date(dateGiven){
         return;
     }
     const data = processComments(getFileNames(), getComments(getFiles()));
-    let dateList = [];
     const formatChangedDateGiven = new Date(dateGiven);
-    for (let obj of data) {
-        const formatChangedDate = new Date(obj.date);
+    const dateList = data.reduce((acc, el) => {
+        const formatChangedDate = new Date(el.date);
         if (formatChangedDate >= formatChangedDateGiven) {
-            dateList.push(obj);
+            acc.push(el);
         }
-    }
+        return acc;
+    }, []);
     output(dateList);
 }
 
