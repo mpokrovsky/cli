@@ -3,12 +3,7 @@ const { output } = require('./output');
 
 function important() {
     const data = processComments(getFileNames(), getComments(getFiles()));
-    let importantList = [];
-    for (let obj of data) {
-        if (obj.importance === '!') {
-            importantList.push(obj);
-        }
-    }
+    const importantList = data.reduce((acc, el) => el.importance === '!' ? [...acc, el] : acc, []);
     output(importantList);    
 }
 
