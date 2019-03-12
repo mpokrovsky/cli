@@ -7,12 +7,8 @@ function user(nameGiven) {
         return;
     }
     const data = processComments(getFileNames(), getComments(getFiles()));
-    let userList = [];
-    for (let obj of data) {
-        if (obj.user.substr(0, nameGiven.length).toLowerCase() === nameGiven.toLowerCase()) {
-            userList.push(obj);
-        }
-    }
+    const userList = data.reduce((acc, el) => 
+        el.user.substr(0, nameGiven.length).toLowerCase() === nameGiven.toLowerCase() ? [...acc, el] : acc, []);
     output(userList);
 }
  
